@@ -1,0 +1,132 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 36 33% 97%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 210 100% 35%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 36 40% 80%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 36 70% 50%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.gradient-text {
+  @apply bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent;
+}
+
+.animated-border {
+  position: relative;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.animated-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--primary)));
+  background-size: 200% 100%;
+  animation: border-animation 3s linear infinite;
+  z-index: -1;
+}
+
+@keyframes border-animation {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 200% 0%;
+  }
+}
+
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.bg-pattern {
+  background-color: hsla(var(--background));
+  background-image: radial-gradient(hsla(var(--primary) / 0.05) 2px, transparent 2px),
+    radial-gradient(hsla(var(--primary) / 0.05) 2px, hsla(var(--background)) 2px);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
+}
+
+.bg-pattern-dark {
+  background-color: hsla(var(--primary) / 0.05);
+  background-image: radial-gradient(hsla(var(--background) / 0.1) 2px, transparent 2px),
+    radial-gradient(hsla(var(--background) / 0.1) 2px, hsla(var(--primary) / 0.05) 2px);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
+}
+
+.section-divider {
+  position: relative;
+  height: 100px;
+  overflow: hidden;
+}
+
+.section-divider::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: linear-gradient(135deg, transparent 50%, hsl(var(--background)) 50%);
+}
+
+.section-divider-reverse {
+  position: relative;
+  height: 100px;
+  overflow: hidden;
+}
+
+.section-divider-reverse::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: linear-gradient(-135deg, transparent 50%, hsl(var(--background)) 50%);
+}
